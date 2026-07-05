@@ -1,0 +1,8 @@
+2026-07-04 20:42:56 | INFO | ovx_test | 🚀 OpenVisionX logger test started
+2026-07-04 20:42:56 | WARNING | ovx_test | This is a warning message
+2026-07-04 20:42:56 | ERROR | ovx_test | This is an error message
+2026-07-04 20:42:56 | INFO | ovx_test | ♻️ Logger reuse test passed (same instance)
+2026-07-04 20:44:47 | INFO | ovx_test | 🚀 OpenVisionX logger test started
+2026-07-04 20:44:47 | WARNING | ovx_test | This is a warning message
+2026-07-04 20:44:47 | ERROR | ovx_test | This is an error message
+2026-07-04 20:44:47 | INFO | ovx_test | ♻️ Logger reuse test passed (same instance)

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openvisionx"
+version = "0.1.0-alpha"
+description = "Industrial Machine Vision Platform"
+authors = [
+    { name = "Nguyen Hoang Lam" }
+]
+requires-python = ">=3.12"
+
+dependencies = [
+    "numpy",
+    "opencv-python"
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
