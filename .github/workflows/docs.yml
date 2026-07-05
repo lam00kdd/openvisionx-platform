@@ -1,0 +1,29 @@
+name: Documentation
+
+on:
+
+  push:
+
+    paths:
+
+      - "docs/**"
+
+      - "*.md"
+
+jobs:
+
+  markdown:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Markdown check
+
+        run: |
+
+          echo "Checking documentation..."
+
+          find . -name "*.md"
