@@ -1,5 +1,5 @@
 """
-OpenVisionX Logger.
+OpenVisionX Logging Framework.
 """
 
 from __future__ import annotations
@@ -7,23 +7,18 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
-
 _LOGGER_NAME = "OpenVisionX"
 
 
 def configure_logger(
-    log_file: str | None = None,
+    *,
     level: int = logging.INFO,
+    log_file: str | None = None,
 ) -> logging.Logger:
     """
-    Configure OpenVisionX logger.
+    Configure the OpenVisionX root logger.
 
-    Parameters
-    ----------
-    log_file
-        Optional log file path.
-    level
-        Logging level.
+    Calling this function multiple times is safe.
     """
 
     logger = logging.getLogger(_LOGGER_NAME)
@@ -32,16 +27,16 @@ def configure_logger(
         return logger
 
     logger.setLevel(level)
+    logger.propagate = False
 
     formatter = logging.Formatter(
         fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    console = logging.StreamHandler()
-    console.setFormatter(formatter)
-
-    logger.addHandler(console)
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
 
     if log_file:
 
@@ -53,7 +48,7 @@ def configure_logger(
         )
 
         file_handler = logging.FileHandler(
-            path,
+            filename=path,
             encoding="utf-8",
         )
 
@@ -66,7 +61,7 @@ def configure_logger(
 
 def get_logger(name: str | None = None) -> logging.Logger:
     """
-    Return a child logger.
+    Return an OpenVisionX logger.
     """
 
     root = configure_logger()

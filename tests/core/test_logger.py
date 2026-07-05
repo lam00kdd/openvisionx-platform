@@ -1,10 +1,29 @@
-from openvisionx.core.logger import get_logger
+import logging
+
+from openvisionx.core.logger import (
+    configure_logger,
+    get_logger,
+)
 
 
-def test_logger():
+def test_configure_logger():
 
-    logger = get_logger(__name__)
+    logger = configure_logger()
 
-    logger.info("Logger OK")
+    assert logger.name == "OpenVisionX"
 
-    assert logger.name.endswith(__name__)
+
+def test_get_logger():
+
+    logger = get_logger("GrayTool")
+
+    assert logger.name.endswith("GrayTool")
+
+
+def test_logger_level():
+
+    logger = configure_logger(
+        level=logging.DEBUG,
+    )
+
+    assert logger.level == logging.INFO
