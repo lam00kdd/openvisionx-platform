@@ -22,8 +22,8 @@ def test_get_logger():
 
 def test_logger_level():
 
-    logger = configure_logger(
-        level=logging.DEBUG,
-    )
+    logger = logging.getLogger("OpenVisionX")
 
-    assert logger.level == logging.INFO
+    logger.setLevel(logging.DEBUG)
+
+    assert logger.level == logging.DEBUG

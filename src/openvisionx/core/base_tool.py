@@ -54,7 +54,11 @@ class BaseTool(ABC):
 
         self.logger.info("Start")
 
-        self.execute(context)
+        try:
+            self.execute(context)
+        except Exception as ex:
+            self.logger.exception(ex)
+            raise
 
         self.logger.info("Finish")
 

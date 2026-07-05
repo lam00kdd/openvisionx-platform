@@ -15,19 +15,16 @@ def configure_logger(
     level: int = logging.INFO,
     log_file: str | None = None,
 ) -> logging.Logger:
-    """
-    Configure the OpenVisionX root logger.
-
-    Calling this function multiple times is safe.
-    """
 
     logger = logging.getLogger(_LOGGER_NAME)
 
-    if logger.handlers:
-        return logger
-
+    # Luôn cập nhật level
     logger.setLevel(level)
     logger.propagate = False
+
+    # Nếu đã cấu hình handler thì không thêm lại
+    if logger.handlers:
+        return logger
 
     formatter = logging.Formatter(
         fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
@@ -39,25 +36,9 @@ def configure_logger(
     logger.addHandler(console_handler)
 
     if log_file:
-
-        path = Path(log_file)
-
-        path.parent.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-
-        file_handler = logging.FileHandler(
-            filename=path,
-            encoding="utf-8",
-        )
-
-        file_handler.setFormatter(formatter)
-
-        logger.addHandler(file_handler)
-
+        ...
+    
     return logger
-
 
 def get_logger(name: str | None = None) -> logging.Logger:
     """

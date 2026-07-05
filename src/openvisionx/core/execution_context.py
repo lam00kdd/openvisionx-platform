@@ -96,3 +96,21 @@ class ExecutionContext:
         self.inputs.clear()
         self.outputs.clear()
         self.parameters.clear()
+
+
+import logging
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def reset_logger():
+
+    logger = logging.getLogger("OpenVisionX")
+
+    logger.handlers.clear()
+
+    logger.setLevel(logging.NOTSET)
+
+    yield
+
+    logger.handlers.clear()
