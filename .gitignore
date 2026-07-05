@@ -1,0 +1,47 @@
+# Python
+
+__pycache__/
+
+*.py[cod]
+
+*.egg-info/
+
+.pytest_cache/
+
+.coverage
+
+htmlcov/
+
+.venv/
+
+venv/
+
+.env
+
+# VSCode
+
+.vscode/
+
+# Idea
+
+.idea/
+
+# macOS
+
+.DS_Store
+
+# Windows
+
+Thumbs.db
+
+# Logs
+
+logs/
+
+*.log
+
+# Build
+
+dist/
+
+build/

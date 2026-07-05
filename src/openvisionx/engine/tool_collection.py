@@ -24,9 +24,6 @@ class ToolCollection:
         return iter(self._tools)
 
     def add(self, tool: BaseTool) -> None:
-        """
-        Add a tool.
-        """
         self._tools.append(tool)
 
     def remove(self, tool: BaseTool) -> None:
@@ -73,3 +70,11 @@ class ToolCollection:
             raise ValueError(f"Tool '{name}' not found.")
 
         return self._tools.index(tool)
+    
+    def move(
+        self,
+        old_index: int,
+        new_index: int,
+    ) -> None:
+        tool = self._tools.pop(old_index)
+        self._tools.insert(new_index, tool)
