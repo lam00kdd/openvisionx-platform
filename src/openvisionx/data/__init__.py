@@ -13,3 +13,11 @@ __all__ = [
     "ROI",
     "Size",
 ]
+
+from .image import Image
+from .pixel_format import PixelFormat
+
+__all__ += [
+    "Image",
+    "PixelFormat",
+]
