@@ -1,3 +1,4 @@
+from openvisionx.core.constants import ContextKey
 from openvisionx.core.execution_context import ExecutionContext
 
 
@@ -5,18 +6,22 @@ def test_input() -> None:
 
     ctx = ExecutionContext()
 
-    ctx.set_input("image", "PCB")
+    ctx.set_input(ContextKey.IMAGE, "PCB")
 
-    assert ctx.get_input("image") == "PCB"
+    assert ctx.has_input(ContextKey.IMAGE)
+
+    assert ctx.get_input(ContextKey.IMAGE) == "PCB"
 
 
 def test_output() -> None:
 
     ctx = ExecutionContext()
 
-    ctx.set_output("gray", "GRAY_IMAGE")
+    ctx.set_output(ContextKey.GRAY, "GRAY")
 
-    assert ctx.get_output("gray") == "GRAY_IMAGE"
+    assert ctx.has_output(ContextKey.GRAY)
+
+    assert ctx.get_output(ContextKey.GRAY) == "GRAY"
 
 
 def test_parameter() -> None:
@@ -39,12 +44,20 @@ def test_shared() -> None:
     assert ctx.get_shared("logger") is logger
 
 
-def test_clear_outputs() -> None:
+def test_reset() -> None:
 
     ctx = ExecutionContext()
 
-    ctx.set_output("gray", 123)
+    ctx.set_input(ContextKey.IMAGE, 1)
 
-    ctx.clear_outputs()
+    ctx.set_output(ContextKey.GRAY, 2)
+
+    ctx.set_parameter("threshold", 100)
+
+    ctx.reset()
+
+    assert ctx.inputs == {}
 
     assert ctx.outputs == {}
+
+    assert ctx.parameters == {}
